@@ -1,19 +1,104 @@
-import React from 'react';
+// //App.jsx
+// import React, { useEffect } from 'react';
+// import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+// import HomePage from './components/HomePage';
+// import RoomPage from './components/RoomPage';
+// import './App.css';
+
+// // Import Redux tools
+// import { useDispatch } from 'react-redux';
+// import { setRoomState } from './store/roomSlice';
+
+// function App() {
+//   const dispatch = useDispatch();
+
+//   // This effect will listen for changes in other tabs
+//   useEffect(() => {
+//     const handleStorageChange = (event) => {
+//       // Check if the change is for a room we might be interested in
+//       if (event.key && event.key.startsWith('room-') && event.newValue) {
+//         try {
+//           const roomData = JSON.parse(event.newValue);
+//           // Add the roomId back, since it's the key
+//           const fullState = { roomId: event.key, ...roomData };
+//           // Dispatch the action to update this tab's state
+//           dispatch(setRoomState(fullState));
+//         } catch (e) {
+//           console.error("Failed to parse stored state on change", e);
+//         }
+//       }
+//     };
+
+//     window.addEventListener('storage', handleStorageChange);
+
+//     return () => {
+//       window.removeEventListener('storage', handleStorageChange);
+//     };
+//   }, [dispatch]);
+
+
+//   return (
+//     <Router>
+//       <div className="container mt-5">
+//         <h1 className="text-center mb-4">🧠 Planning Poker</h1>
+//         <Routes>
+//           <Route path="/" element={<HomePage />} />
+//           <Route path="/room/:roomId" element={<RoomPage />} />
+//         </Routes>
+//       </div>
+//     </Router>
+//   );
+// }
+
+// export default App;
+
+
+
+
+
+import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import HomePage from './components/HomePage';
-import RoomPage from './components/RoomPage';
-import './App.css';
+import HomePage from './components/pages/HomePage';
+import RoomPage from './components/pages/RoomPage';
+import MainLayout from './components/layout/MainLayout'; // <-- Import the layout
+
+// Import Redux tools
+import { useDispatch } from 'react-redux';
+import { setRoomState } from './store/roomSlice';
 
 function App() {
+  const dispatch = useDispatch();
+
+  // This global logic correctly remains here.
+  useEffect(() => {
+    const handleStorageChange = (event) => {
+      if (event.key && event.key.startsWith('room-') && event.newValue) {
+        try {
+          const roomData = JSON.parse(event.newValue);
+          const fullState = { roomId: event.key, ...roomData };
+          dispatch(setRoomState(fullState));
+        } catch (e) {
+          console.error("Failed to parse stored state on change", e);
+        }
+      }
+    };
+
+    window.addEventListener('storage', handleStorageChange);
+
+    return () => {
+      window.removeEventListener('storage', handleStorageChange);
+    };
+  }, [dispatch]);
+
   return (
     <Router>
-      <div className="container mt-5">
-        <h1 className="text-center mb-4">🧠 Planning Poker</h1>
+      {/* The MainLayout component now provides the visual container */}
+      <MainLayout>
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/room/:roomId" element={<RoomPage />} />
         </Routes>
-      </div>
+      </MainLayout>
     </Router>
   );
 }
