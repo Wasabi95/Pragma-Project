@@ -44,3 +44,17 @@ export function useRoomState(roomId) {
 
   return [roomState, updateState];
 }
+
+
+
+
+// That useRoomState hook is the entire engine that allows for real-time 
+// updates and communication between your browser tabs.
+// It's a very clever and efficient way to achieve this "no-backend" 
+// real-time effect by leveraging browser-native features. Let's break 
+// down exactly how it works.
+// The "Single Source of Truth": localStorage
+// The core concept is that localStorage acts as a small, shared database 
+// that is accessible by all of your application's tabs (as long as they 
+// are on the same domain, e.g., http://localhost:3000).
+// Your hook uses two distinct mechanisms to interact with this shared database.

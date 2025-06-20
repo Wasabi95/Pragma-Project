@@ -1,49 +1,4 @@
 // //src/components/pages/HomePage.js
-// import React, { useState } from 'react';
-// import { useNavigate } from 'react-router-dom';
-// import { useDispatch } from 'react-redux';
-// import { setRoomState } from '../../store/roomSlice';
-// import CreateRoomForm from '../organisms/CreateRoomForm';
-
-// function HomePage() {
-//   const [roomName, setRoomName] = useState('DevTEAM');
-//   const [userName, setUserName] = useState('ANTONIO');
-//   const navigate = useNavigate();
-//   const dispatch = useDispatch();
-
-//   const handleCreateRoom = (e) => {
-//     e.preventDefault();
-//     if (!roomName.trim() || !userName.trim()) return;
-
-//     const roomId = `room-${Date.now()}`;
-//     const creator = { name: userName, isModerator: true, vote: null, hasVoted: false };
-//     const initialRoomState = {
-//       roomId,
-//       roomName,
-//       participants: { [userName]: creator },
-//       stories: [],
-//       activeStoryId: null,
-//       votesRevealed: false,
-//     };
-    
-//     dispatch(setRoomState(initialRoomState));
-//     navigate(`/room/${roomId}`, { state: { currentUser: creator } });
-//   };
-
-//   return (
-//     <CreateRoomForm
-//       roomName={roomName}
-//       onRoomNameChange={(e) => setRoomName(e.target.value)}
-//       userName={userName}
-//       onUserNameChange={(e) => setUserName(e.target.value)}
-//       onSubmit={handleCreateRoom}
-//     />
-//   );
-// }
-
-// export default HomePage;
-
-
 
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';

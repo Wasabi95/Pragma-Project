@@ -1,7 +1,7 @@
 //src/store/roomSlice.js
 import { createSlice } from '@reduxjs/toolkit';
 
-const initialState = {
+export const initialState =  {
   roomId: null,
   roomName: null,
   participants: {},

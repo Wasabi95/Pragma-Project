@@ -5,6 +5,11 @@ import { validateName } from './validator';
 describe('validateName utility', () => {
 
   // Test Case 1: The "Happy Path" - valid names
+  // It accepts names with minimum (5) and maximum (20) length limits.
+  // It allows numbers in the name.
+  // if you pass a basic string like "ValidName" 
+  // (letters only, no symbols or issues), the 
+  // validateName function should return isValid: true
   describe('when given a valid name', () => {
     it('should return true for a simple valid name', () => {
       const result = validateName('ValidName');

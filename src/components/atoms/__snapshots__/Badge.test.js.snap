@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Badge Component matches snapshot 1`] = `
+<DocumentFragment>
+  <span
+    class="badge bg-success fs-6"
+  >
+    Success
+  </span>
+</DocumentFragment>
+`;
