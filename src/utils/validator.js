@@ -31,3 +31,10 @@ export function validateName(name) {
   // If all checks pass, the name is valid.
   return { isValid: true, message: '' };
 }
+// const maxOnlyNumbers = (name, maxNumber) => {
+//     const numberMatches = name.match(/\d/g);
+//   if (numberMatches && numberMatches.length > maxNumber) {
+//     return { isValid: false, message: 'Cannot contain more than 3 numbers.' };
+//   }
+//  return { isValid: true, message: '' };
+// }
